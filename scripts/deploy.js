@@ -1,15 +1,11 @@
 const main = async () => {
-  const [deployer] = await hre.ethers.getSigners();
-  const accountBalance = await deployer.getBalance();
+  const gmContractFactory = await hre.ethers.getContractFactory("GmPortal");
+  const gmContract = await gmContractFactory.deploy({
+    value: hre.ethers.utils.parseEther("0.005"),
+  });
+  await gmContract.deployed();
 
-  console.log("Deploying contracts with account: ", deployer.address);
-  console.log("Account balance: ", accountBalance.toString());
-
-  const Token = await hre.ethers.getContractFactory("GmPortal");
-  const portal = await Token.deploy();
-  await portal.deployed();
-
-  console.log("GmPortal address: ", portal.address);
+  console.log("GmPortal address: ", gmContract.address);
 };
 
 const runMain = async () => {
