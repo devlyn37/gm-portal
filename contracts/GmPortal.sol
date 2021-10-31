@@ -4,12 +4,11 @@ pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
 
+/// @title A silly little message board
+/// @author Devlyn Dorfer (completing Buildspace project)
+/// @notice The current randomization method could be gamed
 contract GmPortal {
     uint256 totalGms;
-
-    /*
-     * We will be using this below to help generate a random number
-     */
     uint256 private seed;
 
     event NewGm(
@@ -29,11 +28,15 @@ contract GmPortal {
     Gm[] gms;
     mapping(address => uint256) public lastGm;
 
+    /// @dev generates the initial randomization seed
     constructor() payable {
         console.log("gm");
         seed = (block.timestamp + block.difficulty) % 100;
     }
 
+    /// Send a message, maybe win some eth
+    /// @param _message the message specified by the sender
+    /// @notice send message, sender may win eth if they send 23-25 hrs after their prev message
     function gm(string memory _message) public {
         require(
             lastGm[msg.sender] + 23 hours < block.timestamp,
@@ -71,10 +74,12 @@ contract GmPortal {
         emit NewGm(msg.sender, block.timestamp, _message, status);
     }
 
+    /// @return gms a list of all messages
     function getAllGms() public view returns (Gm[] memory) {
         return gms;
     }
 
+    /// @return totalGms the number of messages sent
     function getTotalGms() public view returns (uint256) {
         console.log("We have %d total gms!", totalGms);
         return totalGms;
