@@ -1,15 +1,8 @@
-# Basic Sample Hardhat Project
+# gm portal 🔆.
+A silly message board contract for saying gm 🔆. Users can send one message per day, and if they send a message on consecutive days they have a chance to win a small amount of eth.
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+Based on a Buildspace project 🦄.
 
-Try running some of the following tasks:
+Here's the [client](https://gm-portal.devlyn37.repl.co)
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+Here's the [client repo](https://github.com/devlyn37/gm-portal-web)
